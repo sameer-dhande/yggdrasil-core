@@ -1,6 +1,6 @@
 {
-  "name": "Yggdrasil Core",
-  "image": "mcr.microsoft.com/devcontainers/go:1.26-bookworm",
+  "name": "Toskar Core",
+  "image": "mcr.microsoft.com/devcontainers/go:1.26-trixie",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "22",
@@ -9,10 +9,12 @@
   },
   "onCreateCommand": "npm install -g pnpm@9.15.0",
   "postCreateCommand": "go mod download && cd web && pnpm install",
-  "forwardPorts": [7331],
+  "forwardPorts": [
+    7331
+  ],
   "portsAttributes": {
     "7331": {
-      "label": "Yggdrasil daemon",
+      "label": "Toskar daemon",
       "onAutoForward": "notify"
     }
   },
@@ -21,20 +23,16 @@
       "extensions": [
         "golang.go",
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
         "bradlc.vscode-tailwindcss"
       ],
       "settings": {
         "go.toolsManagement.checkForUpdates": "off",
         "go.useLanguageServer": true,
-        "editor.formatOnSave": true,
         "[go]": {
-          "editor.defaultFormatter": "golang.go"
+          "editor.defaultFormatter": "golang.go",
+          "editor.formatOnSave": true
         }
       }
     }
-  },
-  "remoteEnv": {
-    "YGGDRASIL_WEB_UI_DIR": "${containerWorkspaceFolder}/web/dist"
   }
 }
